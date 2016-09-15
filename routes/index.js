@@ -8,8 +8,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/webhook', function(req, res, next) {
   //res.render('index', { title: 'Webhook' });
+  console.log('FB_VERIFY_TOKEN : ' + FB_VERIFY_TOKEN)
   if (req.query['hub.mode'] === 'subscribe' &&
-      req.query['hub.verify_token'] === 'itz_gitby_bot_app') {
+      req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
     console.log("Validating webhook");
     res.status(200).send(req.query['hub.challenge']);
   } else {
